@@ -8,6 +8,6 @@
     "start": "node apps/server/dist/main"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18 <20"
   }
 }
