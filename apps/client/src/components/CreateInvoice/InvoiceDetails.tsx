@@ -17,6 +17,7 @@ interface IDetails {
 
 
 export const InvoiceDetails: FC<IDetails> = ({details, setDetails}) => {
+    console.log(details, setDetails)
     return (
         <>
             <Typography variant="h6" gutterBottom>
