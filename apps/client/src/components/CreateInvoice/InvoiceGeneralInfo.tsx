@@ -6,7 +6,7 @@ import Checkbox from "@mui/material/Checkbox";
 import {TextareaAutosize} from "@mui/material";
 
 
-interface GeneralInfo {
+export interface GeneralInfo {
     title: string,
     requisites: string,
     isSend: boolean,

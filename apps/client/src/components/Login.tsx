@@ -38,7 +38,6 @@ export const Login: FC<ILogin> = ({setIsLogin}) => {
         }
     }
 
-
     return (
         <>
             <Container component="main" maxWidth="xs">

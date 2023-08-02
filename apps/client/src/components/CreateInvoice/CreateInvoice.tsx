@@ -3,6 +3,7 @@ import {FC, useState} from "react";
 import {InvoiceGeneralInfo} from "./InvoiceGeneralInfo.tsx";
 import {InvoiceDetails} from "./InvoiceDetails.tsx";
 import {toast} from "react-toastify";
+import {InvoiceReview} from "./InvoiceReview.tsx";
 
 
 const steps = ['Общая информация', 'Детали заказа']; //'Review your order'
@@ -47,7 +48,7 @@ export const CreateInvoice: FC = () => {
     }
 
     const validateDetails = () => {
-        return true
+        return !(details.cardsCount <= 0 || details.cardsPrice <= 0)
     }
 
     const handleNext = () => {
@@ -79,18 +80,7 @@ export const CreateInvoice: FC = () => {
                         ))}
                     </Stepper>
                     {activeStep === steps.length ? (
-                        <>
-
-                            //TODO: fetch + download file
-                            <Typography variant="h5" gutterBottom>
-                                Thank you for your order.
-                            </Typography>
-                            <Typography variant="subtitle1">
-                                Your order number is #2001539. We have emailed your order
-                                confirmation, and will send you an update when your order has
-                                shipped.
-                            </Typography>
-                        </>
+                        <InvoiceReview info={info} details={details}/>
                     ) : (
                         <>
                             {/*{getStepContent(activeStep)}*/}
