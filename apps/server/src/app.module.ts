@@ -4,6 +4,7 @@ import {join} from 'path';
 import {ConfigModule} from '@nestjs/config';
 import Joi from "joi";
 import {AuthModule} from "./modules/auth/auth.module";
+import {InvoicesModule} from "./modules/invoices/invoices.module";
 
 @Module({
     imports: [
@@ -19,7 +20,8 @@ import {AuthModule} from "./modules/auth/auth.module";
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '../..', 'client', 'dist'),
         }),
-        AuthModule
+        AuthModule,
+        InvoicesModule
     ],
     controllers: [],
     providers: [],

@@ -3,7 +3,7 @@ import {Details} from "../components/CreateInvoice/InvoiceDetails.tsx";
 import {HttpStatusCodes} from "../constants/http-status-codes.ts";
 import {toast} from "react-toastify";
 import {httpErrorHandler} from "../helpers/http-error-handler.ts";
-
+import FileDownload from 'js-file-download'
 
 interface IDataToServer extends  GeneralInfo, Details{
 
@@ -16,13 +16,14 @@ export const sendDataToServerHandler = async (data: IDataToServer) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({data})
+            body: JSON.stringify({...data, email: data.isSend ? data.email : null})
         })
         if(res.status === HttpStatusCodes.BAD_REQUEST) {
+            console.log(res.body)
             toast.warn('Пожалуйста, проверьте что вы прафильно заполнили все формы')
             return null
         }
-        console.log(res)
+        return FileDownload(await res.arrayBuffer(), '123.txt')
     } catch (e) {
         console.log(e)
         httpErrorHandler()
