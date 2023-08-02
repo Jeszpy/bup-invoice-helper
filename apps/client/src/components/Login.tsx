@@ -1,8 +1,8 @@
 import React, {FC} from "react";
-import {HttpStatusCodes} from "../constants/http-status-codes";
+import {HttpStatusCodes} from "../constants/http-status-codes.ts";
 import {toast} from "react-toastify";
-import {LocalStorageItems} from "../constants/local-storage-items";
-import {httpErrorHandler} from "../helpers/http-error-handler";
+import {LocalStorageItems} from "../constants/local-storage-items.ts";
+import {httpErrorHandler} from "../helpers/http-error-handler.ts";
 import {Avatar, Box, Button, Container, CssBaseline, TextField, Typography} from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {blue} from "@mui/material/colors";

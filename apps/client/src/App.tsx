@@ -1,7 +1,8 @@
 import {JSX, useEffect, useState} from 'react'
 import './App.css'
-import {refreshTokenHandler} from "../handlers/refresh-token.handler.ts";
-import {Login} from "../components/Login.tsx";
+import {refreshTokenHandler} from "./handlers/refresh-token.handler.ts";
+import {Login} from "./components/Login.tsx";
+import {CreateInvoice} from "./components/CreateInvoice/CreateInvoice.tsx";
 
 
 function App(): JSX.Element {
@@ -11,7 +12,7 @@ function App(): JSX.Element {
         refreshTokenHandler().then(data => setIsLogin(data))
     }, [])
 
-    return isLogin ? <h1>create invoice</h1> : <Login setIsLogin={setIsLogin}/>
+    return isLogin ? <CreateInvoice/> : <Login setIsLogin={setIsLogin}/>
 
 }
 
