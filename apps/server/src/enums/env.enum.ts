@@ -5,4 +5,5 @@ export enum EnvEnum {
     SA_PWD = 'SA_PWD',
     JWT_SECRET = 'JWT_SECRET',
     JWT_EXPIRES_IN = 'JWT_EXPIRES_IN',
+    ZIP_PASSWORD = 'ZIP_PASSWORD',
 }

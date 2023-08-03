@@ -5,6 +5,7 @@ import {ConfigModule} from '@nestjs/config';
 import Joi from "joi";
 import {AuthModule} from "./modules/auth/auth.module";
 import {InvoicesModule} from "./modules/invoices/invoices.module";
+import {BootstrapModule} from "./modules/bootstrap/bootstrap.module";
 
 @Module({
     imports: [
@@ -15,11 +16,13 @@ import {InvoicesModule} from "./modules/invoices/invoices.module";
                 SA_PWD: Joi.string().required(),
                 JWT_SECRET: Joi.string().required(),
                 JWT_EXPIRES_IN: Joi.string().required(),
+                ZIP_PASSWORD: Joi.string().required(),
             })
         }),
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '../..', 'client', 'dist'),
         }),
+        BootstrapModule,
         AuthModule,
         InvoicesModule
     ],

@@ -23,7 +23,7 @@ export const sendDataToServerHandler = async (data: IDataToServer) => {
             toast.warn('Пожалуйста, проверьте что вы прафильно заполнили все формы')
             return null
         }
-        return FileDownload(await res.arrayBuffer(), '123.txt')
+        return FileDownload(await res.arrayBuffer(), 'any.xlsx')
     } catch (e) {
         console.log(e)
         httpErrorHandler()
