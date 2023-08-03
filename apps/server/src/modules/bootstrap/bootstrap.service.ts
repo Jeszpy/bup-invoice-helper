@@ -9,7 +9,7 @@ import {EnvEnum} from "../../enums/env.enum";
 @Injectable()
 export class BootstrapService implements OnApplicationBootstrap {
     private logger: Logger = new Logger(BootstrapService.name)
-    private readonly pathToResources = path.join(process.cwd(), '../../resources')
+    private readonly pathToResources = path.join(__dirname, '../../../../../resources')
     private readonly pathToExcelFolder = this.pathToResources + '/excel'
     private readonly pathToPdfFolder = this.pathToResources + '/pdf'
     private readonly zipFilePath = this.pathToResources + '/template.zip'
@@ -60,6 +60,7 @@ export class BootstrapService implements OnApplicationBootstrap {
 
     async onApplicationBootstrap() {
         try {
+            //TODO: на рендере он стартует от папки проекта (src/resources) внизу
             console.log(await fs.readdir(process.cwd()))
             console.log(await fs.readdir(path.join(process.cwd(), '..')) )
             console.log(await fs.readdir(path.join(process.cwd(), '..', '..')) )
