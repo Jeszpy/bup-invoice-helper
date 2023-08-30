@@ -15,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         closeOnClick
                         theme="colored"
                         transition={Zoom}
+
         />
     </React.StrictMode>,
 )

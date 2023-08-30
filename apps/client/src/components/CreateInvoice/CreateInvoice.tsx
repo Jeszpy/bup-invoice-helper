@@ -80,7 +80,7 @@ export const CreateInvoice: FC = () => {
                         ))}
                     </Stepper>
                     {activeStep === steps.length ? (
-                        <InvoiceReview info={info} details={details}/>
+                        <InvoiceReview info={info} details={details} activeStep={activeStep} setActiveStep={setActiveStep}/>
                     ) : (
                         <>
                             {/*{getStepContent(activeStep)}*/}

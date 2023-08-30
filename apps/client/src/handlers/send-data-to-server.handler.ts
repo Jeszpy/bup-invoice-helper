@@ -23,7 +23,8 @@ export const sendDataToServerHandler = async (data: IDataToServer) => {
             toast.warn('Пожалуйста, проверьте что вы прафильно заполнили все формы')
             return null
         }
-        return FileDownload(await res.arrayBuffer(), 'any.xlsx')
+        const fileName = res.headers.get('content-disposition')!.split('=')[1].replaceAll('"', '')
+        return FileDownload(await res.arrayBuffer(), `Счёт-фактура №${fileName}`)
     } catch (e) {
         console.log(e)
         httpErrorHandler()

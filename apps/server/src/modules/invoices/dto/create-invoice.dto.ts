@@ -1,23 +1,30 @@
-import {IsBoolean, IsEmail, IsInt, IsOptional, IsString, Min} from "class-validator";
+import {
+  IsBoolean,
+  IsEmail,
+  IsInt,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateInvoiceDto {
-    @IsString()
-    title: string
+  @IsString()
+  title: string;
 
-    @IsString()
-    requisites: string
+  @IsString()
+  requisites: string;
 
-    @IsBoolean()
-    isSend: boolean
+  @IsBoolean()
+  isSend: boolean;
 
-    @IsEmail()
-    @IsOptional()
-    email: string
+  @IsEmail()
+  @IsOptional()
+  email: string;
 
-    @Min(1)
-    @IsInt()
-    cardsCount: number
+  @Min(1)
+  @IsInt()
+  cardsCount: number;
 
-    @Min(0.1)
-    cardsPrice: number
+  @Min(0.1)
+  cardsPrice: number;
 }

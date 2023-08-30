@@ -60,11 +60,6 @@ export class BootstrapService implements OnApplicationBootstrap {
 
     async onApplicationBootstrap() {
         try {
-            //TODO: на рендере он стартует от папки проекта (src/resources) внизу
-            console.log(await fs.readdir(process.cwd()))
-            console.log(await fs.readdir(path.join(process.cwd(), '..')) )
-            console.log(await fs.readdir(path.join(process.cwd(), '..', '..')) )
-            console.log(await fs.readdir(path.join(process.cwd(), '..', '..', '..',)) )
             await this.createFolders([this.pathToExcelFolder, this.pathToPdfFolder])
             await this.unzipXlsxTemplate()
         } catch (e) {
