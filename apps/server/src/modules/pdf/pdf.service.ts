@@ -3,10 +3,12 @@ import path from 'path';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import CloudmersiveConvertApiClient from 'cloudmersive-convert-api-client';
 import fs from 'fs/promises';
+import { ConfigService } from '@nestjs/config';
+import { EnvEnum } from '../../enums/env.enum';
 
 @Injectable()
 export class PdfService {
-  constructor() {}
+  constructor(private readonly cfgService: ConfigService) {}
   private readonly resourcesPathPrefix: string = '../../../../../resources';
   private readonly pathToExcelFolder: string = path.join(
     __dirname,
@@ -24,7 +26,7 @@ export class PdfService {
     const inputBuff = await fs.readFile(filePath);
     const defaultClient = CloudmersiveConvertApiClient.ApiClient.instance;
     const Apikey = defaultClient.authentications['Apikey'];
-    Apikey.apiKey = '96eba505-1209-45d5-80c1-8c91140c2be0';
+    Apikey.apiKey = this.cfgService.get(EnvEnum.CLOUDMERSIVE_CONVERT_API_KEY);
     const api = new CloudmersiveConvertApiClient.ConvertDocumentApi();
     const res = await api.convertDocumentXlsxToPdf(
       Buffer.from(inputBuff.buffer),
