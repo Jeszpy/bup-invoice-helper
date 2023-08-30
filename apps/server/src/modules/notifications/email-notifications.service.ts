@@ -1,21 +1,48 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-
-const sleep = async (seconds: number) =>
-  new Promise((r) => setTimeout(r, seconds * 1000));
-
+import { MailerService } from '@nestjs-modules/mailer';
 export interface ISendEmailEvent {
   email: string | null;
   pathToInvoice: string;
+  fileName: string;
 }
 @Injectable()
 export class EmailNotificationsService {
+  constructor(private readonly mailerService: MailerService) {}
   @OnEvent('invoice.created', { async: true })
   public async sendInvoice(eventDto: ISendEmailEvent) {
-    console.log('send email', eventDto);
+    await this.sendMailToDir(eventDto);
+    if (eventDto.email) {
+      await this.sendMailToCustomer(eventDto);
+    }
+    return;
   }
 
-  private async sendMailToDir() {}
+  private async sendMailToDir(eventDto: ISendEmailEvent) {
+    await this.mailerService.sendMail({
+      to: 'mikolamazaev@mail.ru',
+      template: './send-to-dir.template.hbs',
+      attachments: [
+        {
+          filename: eventDto.fileName,
+          path: eventDto.pathToInvoice,
+          contentType: 'application/pdf',
+        },
+      ],
+    });
+  }
 
-  private async sendMailToCustomer() {}
+  private async sendMailToCustomer(eventDto: ISendEmailEvent) {
+    await this.mailerService.sendMail({
+      to: eventDto.email,
+      template: './send-to-customer.template.hbs',
+      attachments: [
+        {
+          filename: eventDto.fileName,
+          path: eventDto.pathToInvoice,
+          contentType: 'application/pdf',
+        },
+      ],
+    });
+  }
 }

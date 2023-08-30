@@ -20,6 +20,8 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
         JWT_EXPIRES_IN: Joi.string().required(),
         ZIP_PASSWORD: Joi.string().required(),
         CLOUDMERSIVE_CONVERT_API_KEY: Joi.string().required(),
+        MAILER_USER: Joi.string().required(),
+        MAILER_PASSWORD: Joi.string().required(),
       }),
     }),
     ServeStaticModule.forRoot({
